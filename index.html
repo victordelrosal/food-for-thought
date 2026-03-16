@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food for Thought: AI a la Carte</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --bg: #fafafa;
+            --surface: #ffffff;
+            --text: #1d1d1f;
+            --text-secondary: #6e6e73;
+            --accent: #0071e3;
+            --accent-soft: #e8f2fe;
+            --warm: #f5f0eb;
+            --border: #e5e5e7;
+            --gold: #b8860b;
+            --gold-soft: #faf6ef;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 5rem 2rem 3rem;
+            background: linear-gradient(180deg, var(--warm) 0%, var(--bg) 100%);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--gold);
+            background: var(--gold-soft);
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h1 .accent {
+            background: linear-gradient(135deg, var(--gold), #d4a017);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+            font-weight: 400;
+            color: var(--text-secondary);
+            max-width: 580px;
+            margin: 0.75rem auto 0;
+        }
+
+        /* Event Details Bar */
+        .event-bar {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            padding: 1.5rem 2rem;
+            margin: 0 auto;
+            max-width: 720px;
+        }
+
+        .event-detail {
+            text-align: center;
+        }
+
+        .event-detail .label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 0.2rem;
+        }
+
+        .event-detail .value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        /* Divider */
+        .divider {
+            width: 40px;
+            height: 1px;
+            background: var(--border);
+            margin: 1.5rem auto;
+        }
+
+        /* Overview */
+        .overview {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 1rem 2rem 3rem;
+            text-align: center;
+        }
+
+        .overview p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Menu Section */
+        .menu-section {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 2rem 2rem 4rem;
+        }
+
+        .menu-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .menu-header h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-header p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* Menu Cards */
+        .menu-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .menu-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.75rem 2rem;
+            display: grid;
+            grid-template-columns: 3.5rem 1fr;
+            gap: 1.25rem;
+            align-items: start;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .menu-icon {
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .menu-card:nth-child(1) .menu-icon { background: #fef3e2; }
+        .menu-card:nth-child(2) .menu-icon { background: #e8f4fd; }
+        .menu-card:nth-child(3) .menu-icon { background: #f0e8fd; }
+        .menu-card:nth-child(4) .menu-icon { background: #e8fde8; }
+        .menu-card:nth-child(5) .menu-icon { background: #fde8e8; }
+
+        .menu-content h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.15rem;
+            letter-spacing: -0.01em;
+        }
+
+        .menu-content .dish-name {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-content p {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .menu-content .time-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            background: var(--bg);
+            border: 1px solid var(--border);
+            padding: 0.2rem 0.6rem;
+            border-radius: 100px;
+            margin-top: 0.75rem;
+        }
+
+        /* How it works */
+        .how-section {
+            background: var(--warm);
+            padding: 3.5rem 2rem;
+        }
+
+        .how-inner {
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .how-inner h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+        }
+
+        .how-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .how-step {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .how-step h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .how-step p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Principles */
+        .principles {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 3.5rem 2rem;
+            text-align: center;
+        }
+
+        .principles h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .principle {
+            padding: 1.25rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .principle h3 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .principle p {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer .host {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.25rem;
+        }
+
+        .footer .org {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            opacity: 0.7;
+        }
+
+        .footer .note {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 1.25rem;
+            padding: 0.75rem 1.25rem;
+            background: var(--gold-soft);
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .hero { padding: 3.5rem 1.5rem 2rem; }
+            .event-bar { gap: 1.25rem; }
+            .menu-card {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+            .menu-icon {
+                width: 2.75rem;
+                height: 2.75rem;
+                font-size: 1.2rem;
+            }
+            .principles-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="hero-badge">NCI Lunch &amp; Learn Series</div>
+        <h1>Food for Thought:<br><span class="accent">AI a la Carte</span></h1>
+        <p class="subtitle">The Practical Use of AI in the Workplace</p>
+    </section>
+
+    <div class="event-bar">
+        <div class="event-detail">
+            <div class="label">Date</div>
+            <div class="value">Tuesday, 29 September 2026</div>
+        </div>
+        <div class="event-detail">
+            <div class="label">Time</div>
+            <div class="value">13:00 &ndash; 14:00</div>
+        </div>
+        <div class="event-detail">
+            <div class="label">Format</div>
+            <div class="value">Hands-on Workshop</div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <section class="overview">
+        <p>Join us for a hands-on session where the group decides what to build together using AI. The aim is to demonstrate how AI tools can augment work and boost productivity across functions, all grounded in the responsible, ethical, and transparent use of AI.</p>
+    </section>
+
+    <section class="menu-section">
+        <div class="menu-header">
+            <h2>The Menu</h2>
+            <p>Five dishes to choose from. You pick, we build it together, live.</p>
+        </div>
+
+        <div class="menu-grid">
+
+            <div class="menu-card">
+                <div class="menu-icon">&#x1F4DD;</div>
+                <div class="menu-content">
+                    <h3>Create</h3>
+                    <div class="dish-name">The Lesson Launcher</div>
+                    <p>The room picks a topic nobody here teaches. Together we build a complete 1-hour lesson plan with learning outcomes, activities, and assessment. From blank page to finished resource.</p>
+                    <span class="time-badge">~15 min</span>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-icon">&#x1F4AC;</div>
+                <div class="menu-content">
+                    <h3>Communicate</h3>
+                    <div class="dish-name">The Tone Shifter</div>
+                    <p>Take one real message and rewrite it for three different audiences: student, parent, senior management. Same content, three registers. Audience adaptation in action.</p>
+                    <span class="time-badge">~15 min</span>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-icon">&#x1F50D;</div>
+                <div class="menu-content">
+                    <h3>Analyse</h3>
+                    <div class="dish-name">The Survey Whisperer</div>
+                    <p>Feed in anonymised free-text feedback (student evaluations, staff surveys) and extract themes, quantify sentiment, and surface the three things to act on. Raw text to actionable insight.</p>
+                    <span class="time-badge">~15 min</span>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-icon">&#x26A1;</div>
+                <div class="menu-content">
+                    <h3>Automate</h3>
+                    <div class="dish-name">The Monday Morning Machine</div>
+                    <p>A volunteer maps out a real recurring weekly task. We build a reusable prompt template that turns 45 minutes of drudgery into 5. Walk away with something you can use next Monday.</p>
+                    <span class="time-badge">~15 min</span>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-icon">&#x1F393;</div>
+                <div class="menu-content">
+                    <h3>Learn</h3>
+                    <div class="dish-name">The Instant Expert</div>
+                    <p>Someone names a topic outside their expertise. We build a structured self-study guide with key concepts, common misconceptions, and questions to test understanding. AI as tutor, not crutch.</p>
+                    <span class="time-badge">~15 min</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="how-section">
+        <div class="how-inner">
+            <h2>How It Works</h2>
+            <div class="how-steps">
+                <div class="how-step">
+                    <div class="step-number">1</div>
+                    <h3>Browse</h3>
+                    <p>Review the menu of AI use cases</p>
+                </div>
+                <div class="how-step">
+                    <div class="step-number">2</div>
+                    <h3>Vote</h3>
+                    <p>The room picks the dish to order</p>
+                </div>
+                <div class="how-step">
+                    <div class="step-number">3</div>
+                    <h3>Build</h3>
+                    <p>We create something real, together, live</p>
+                </div>
+                <div class="how-step">
+                    <div class="step-number">4</div>
+                    <h3>Take Away</h3>
+                    <p>Everyone leaves with a usable resource</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="principles">
+        <h2>Our Principles</h2>
+        <div class="principles-grid">
+            <div class="principle">
+                <h3>Practical, Not Theoretical</h3>
+                <p>We build real things, not slide decks about building things</p>
+            </div>
+            <div class="principle">
+                <h3>Audience-Driven</h3>
+                <p>You choose what we create. Your work, your priorities</p>
+            </div>
+            <div class="principle">
+                <h3>Responsible AI</h3>
+                <p>Ethical, transparent, and grounded in good practice</p>
+            </div>
+            <div class="principle">
+                <h3>Augment, Not Replace</h3>
+                <p>AI that makes you more capable, not more dependent</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="host">Facilitated by Victor del Rosal</div>
+        <div class="org">National College of Ireland &middot; Lunch &amp; Learn Series</div>
+        <div class="note">Lunch will be provided. Please bring your own drinks.</div>
+    </footer>
+
+</body>
+</html>
