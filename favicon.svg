@@ -1,20 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <defs>
-    <linearGradient id="chili" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#e53e3e"/>
-      <stop offset="100%" stop-color="#c53030"/>
+    <linearGradient id="cloche" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d4a017"/>
+      <stop offset="100%" stop-color="#b8860b"/>
     </linearGradient>
-    <linearGradient id="stem" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#48bb78"/>
-      <stop offset="100%" stop-color="#2f855a"/>
+    <linearGradient id="plate" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f0f0"/>
+      <stop offset="100%" stop-color="#d4d4d4"/>
     </linearGradient>
   </defs>
-  <!-- Stem -->
-  <path d="M30 8 C30 8 28 4 32 2 C36 4 34 8 34 8" fill="url(#stem)"/>
-  <path d="M26 10 C26 10 22 6 26 3" stroke="#48bb78" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <path d="M38 10 C38 10 42 6 38 3" stroke="#48bb78" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <!-- Chili body -->
-  <path d="M24 12 C24 12 18 20 16 32 C14 44 20 56 28 60 C32 62 34 58 36 52 C40 40 44 28 42 18 C41 14 38 10 32 10 C28 10 25 10 24 12 Z" fill="url(#chili)"/>
+  <!-- Plate -->
+  <ellipse cx="32" cy="50" rx="26" ry="8" fill="url(#plate)"/>
+  <ellipse cx="32" cy="50" rx="22" ry="6" fill="#e8e8e8"/>
+  <!-- Cloche dome -->
+  <path d="M10 50 C10 50 10 24 32 14 C54 24 54 50 54 50" fill="url(#cloche)"/>
   <!-- Highlight -->
-  <path d="M28 16 C28 16 24 24 22 34 C21 40 23 48 26 52" stroke="rgba(255,255,255,0.3)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M18 44 C18 44 20 28 32 20" stroke="rgba(255,255,255,0.35)" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- Handle -->
+  <ellipse cx="32" cy="13" rx="4" ry="3" fill="url(#cloche)"/>
+  <ellipse cx="32" cy="12.5" rx="2.5" ry="1.8" fill="#e8c44a"/>
+  <!-- Steam wisps -->
+  <path d="M24 8 C24 4 28 4 28 0" stroke="#d4a017" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.5"/>
+  <path d="M36 6 C36 2 40 2 40 -2" stroke="#d4a017" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.4"/>
 </svg>
