@@ -1,25 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <defs>
-    <linearGradient id="cloche" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#d4a017"/>
-      <stop offset="100%" stop-color="#b8860b"/>
-    </linearGradient>
-    <linearGradient id="plate" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#f0f0f0"/>
-      <stop offset="100%" stop-color="#d4d4d4"/>
-    </linearGradient>
-  </defs>
-  <!-- Plate -->
-  <ellipse cx="32" cy="50" rx="26" ry="8" fill="url(#plate)"/>
-  <ellipse cx="32" cy="50" rx="22" ry="6" fill="#e8e8e8"/>
-  <!-- Cloche dome -->
-  <path d="M10 50 C10 50 10 24 32 14 C54 24 54 50 54 50" fill="url(#cloche)"/>
-  <!-- Highlight -->
-  <path d="M18 44 C18 44 20 28 32 20" stroke="rgba(255,255,255,0.35)" stroke-width="3" fill="none" stroke-linecap="round"/>
-  <!-- Handle -->
-  <ellipse cx="32" cy="13" rx="4" ry="3" fill="url(#cloche)"/>
-  <ellipse cx="32" cy="12.5" rx="2.5" ry="1.8" fill="#e8c44a"/>
-  <!-- Steam wisps -->
-  <path d="M24 8 C24 4 28 4 28 0" stroke="#d4a017" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.5"/>
-  <path d="M36 6 C36 2 40 2 40 -2" stroke="#d4a017" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.4"/>
+  <!-- Fork -->
+  <g transform="translate(14, 6) rotate(0)">
+    <rect x="8" y="22" width="3" height="28" rx="1.5" fill="#d4a017"/>
+    <rect x="3" y="4" width="2.4" height="16" rx="1.2" fill="#d4a017"/>
+    <rect x="8.3" y="4" width="2.4" height="16" rx="1.2" fill="#d4a017"/>
+    <rect x="13.6" y="4" width="2.4" height="16" rx="1.2" fill="#d4a017"/>
+    <rect x="2" y="18" width="15" height="5" rx="2.5" fill="#b8860b"/>
+  </g>
+  <!-- Knife -->
+  <g transform="translate(34, 6) rotate(0)">
+    <rect x="7" y="22" width="3" height="28" rx="1.5" fill="#d4a017"/>
+    <path d="M5 4 C5 4 4 10 4 16 C4 20 6 22 8.5 22 C11 22 13 20 13 16 C13 10 8.5 4 8.5 4 Z" fill="#b8860b"/>
+    <path d="M6 6 C6 6 5.5 10 5.5 15" stroke="rgba(255,255,255,0.3)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+  </g>
 </svg>
